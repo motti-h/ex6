@@ -2,7 +2,10 @@ import config, { KnownConfigKey } from './utils/config';
 import {httpCalls} from './utils/httpCalls';
 config.init();
 import { app } from './app';
+import { connectDb } from './routesHendlers/store';
 
+async function init(){
+await connectDb();
 const port = +config.get(KnownConfigKey.ServerPort, '3000');
 app.set('port', port);
 
@@ -14,5 +17,7 @@ const server = app.listen(app.get('port'), () => {
     );
     console.log('  Press CTRL-C to stop\n');
   });
+}
 
-httpCalls();
+init().catch(err => console.log('Error', err));
+//httpCalls();

@@ -1,7 +1,7 @@
 import joi from 'joi';
 import { idSchema } from './common';
 
-export const projectSchema = {
+export const proguctSchema = {
   id: idSchema,
   name: joi.string().required().min(3),
 };

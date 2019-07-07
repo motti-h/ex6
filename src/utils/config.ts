@@ -7,6 +7,7 @@ function init() {
 export enum KnownConfigKey {
   JwtSecret = 'JWT_SIGN_SECRET',
   ServerPort= 'SERVER_PORT',
+  DbServer = 'DB_SERVER',
 }
 
 function get(key: string, defoultPort: string = ''): string {

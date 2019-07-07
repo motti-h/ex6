@@ -8,7 +8,7 @@ const productRouter = Router();
 productRouter.use('/:id', middle.middleCheckId);
 
 productRouter.get('/', middle.authenticate(),
-ProductsHendlers.productGetHandler);
+asyncMaker.wrapAsyncAndSend(ProductsHendlers.productGetHandler));
 
 productRouter.get('/:id',
 middle.authenticate(),
@@ -17,15 +17,15 @@ asyncMaker.wrapAsyncAndSend(ProductsHendlers.productGetSpecificHandler) );
 productRouter.delete('/:id',
 middle.authenticate(),
 middle.authorize(credentials.UserRole.Admin, credentials.UserRole.Contributor),
-ProductsHendlers.productDeleteHandler);
+asyncMaker.wrapAsyncAndSend(ProductsHendlers.productDeleteHandler));
 
 productRouter.use('/',
 middle.authenticate(),
 middle.authorize(credentials.UserRole.Admin),
 middle.middleCheckName);
 
-productRouter.post('/', ProductsHendlers.productPostHandler);
+productRouter.post('/', asyncMaker.wrapAsyncAndSend(ProductsHendlers.productPostHandler));
 
-productRouter.put('/:id', ProductsHendlers.productPutHandler);
+productRouter.put('/:id', asyncMaker.wrapAsyncAndSend(ProductsHendlers.productPutHandler));
 
 export { productRouter };

@@ -4,6 +4,8 @@ import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import {store} from '../store';
 import config, { KnownConfigKey } from '../utils/config';
 import { UserCredential } from '../models';
+import CredentialsStore from '../store/credentials';
+import { getDb } from '../routesHendlers/store';
 
 export function initPassport() {
   passport.use(new LocalStrategy(
@@ -12,10 +14,13 @@ export function initPassport() {
       passwordField: 'password',
     },
     (email, password, callback) => {
-      const user = store.credentials.find(u => u.email === email && u.password === password);
-
-      if (user) callback(null, user, {message: 'succeeded'});
-      else callback(null, false, {message: 'failed'});
+      const credentials = new CredentialsStore(getDb()!);
+      const user = credentials.findByCred(email, password);
+      user.then((cred) => {
+        callback(null, cred, {message: 'succeeded'});
+      }).catch((err) => {
+        callback(null, false, {message: 'failed'});
+      });
     },
   ));
 
