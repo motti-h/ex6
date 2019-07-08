@@ -25,9 +25,8 @@ export class DbEntityCollection<T extends DbEntity> {
     return await this.collection.findOne(filter, {projection});
   }
 
-  public async find(filter: FilterQuery<T> | Partial<T>, stripObjectId = true):Promise<any>{
+  public async find(filter: FilterQuery<T> | Partial<T>, stripObjectId = true): Promise<any> {
     const projection = stripObjectId ? { _id: 0 } : undefined;
-    console.log(filter);
     return await this.collection.find(filter).toArray();
   }
 
@@ -59,6 +58,4 @@ export class DbEntityCollection<T extends DbEntity> {
 
     return !!(result.modifiedCount + result.upsertedCount);
   }
-
-  
 }

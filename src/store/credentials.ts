@@ -24,7 +24,7 @@ class CredentialsStore {
     return this.collection.findOne({email, password}, true);
   }
 
-  public add(creds: OptionalId<Credential>[]): Promise<void> {
+  public add(creds: Array<OptionalId<Credential>>): Promise<void> {
     return this.collection.add(creds);
   }
 

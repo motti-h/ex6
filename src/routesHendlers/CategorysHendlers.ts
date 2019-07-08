@@ -42,6 +42,3 @@ export async function categoryDeleteHandler(req: Request, res: Response, next?: 
     const r = await myStore.categories.deleteById(id);
     return (r.result.n) ? Promise.resolve('deleted') : Promise.reject(new Error('204'));
 }
-
-
-

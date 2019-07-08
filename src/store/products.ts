@@ -20,7 +20,7 @@ class ProductStore {
     return this.collection.findById(id, true);
   }
 
-  public add(products: OptionalId<Product>[]): Promise<void> {
+  public add(products: Array<OptionalId<Product>>): Promise<void> {
     return this.collection.add(products);
   }
 

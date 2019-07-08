@@ -39,7 +39,7 @@ export async function productDeleteHandler(req: Request, res: Response, next?: N
     const id = req.params.id;
     const myStore = resolveStore(res);
     const pro = await myStore.products.deleteById(id);
-    return (pro.result.n) ? Promise.resolve('deleted') : Promise.reject(new Error('204')); 
+    return (pro.result.n) ? Promise.resolve('deleted') : Promise.reject(new Error('204'));
 }
 
 export function middleCheckName(req: Request, res: Response, next: NextFunction): any {

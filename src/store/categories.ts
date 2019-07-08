@@ -24,7 +24,7 @@ class CategoryStore {
     return this.collection.findOne({email, password}, true);
   }
 
-  public add(cats: OptionalId<Category>[]): Promise<void> {
+  public add(cats: Array<OptionalId<Category>>): Promise<void> {
     return this.collection.add(cats);
   }
 

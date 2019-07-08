@@ -20,7 +20,7 @@ class UsersStore {
     return this.collection.findById(id, stripObjectId);
   }
 
-  public add(users: OptionalId<User>[]): Promise<void> {
+  public add(users: Array<OptionalId<User>>): Promise<void> {
     return this.collection.add(users);
   }
 
