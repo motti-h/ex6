@@ -5,7 +5,7 @@ import { UserRole, UserCredential } from '../models';
 import * as validation from '../validation/common';
 
 export function middleCheckId(req: Request, res: Response, next: NextFunction): any {
-    validation.getOrThrow<number>(req.params.id, validation.idSchema);
+    validation.getOrThrow<string>(req.params.id, validation.idSchema);
     next();
 }
 
@@ -22,8 +22,10 @@ export function endError(err: any , req: Request, res: Response, next: NextFunct
 }
 
 export function middleCheckName(req: Request, res: Response, next: NextFunction): any {
-  const newProduct: Product = req.body as Product;
-  validation.getOrThrow<string>(newProduct.name, validation.nameSchema);
+  const newProduct: Product[] = req.body as Product[];
+  newProduct.forEach((p) => {
+    validation.getOrThrow<string>(p.name, validation.nameSchema);
+  });
   next();
 }
 

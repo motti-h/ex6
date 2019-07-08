@@ -28,7 +28,7 @@ class CategoryStore {
     return this.collection.add(cats);
   }
 
-  public deleteById(id: string | mongodb.ObjectID): Promise<boolean> {
+  public deleteById(id: string | mongodb.ObjectID): Promise<mongodb.DeleteWriteOpResultObject> {
     return this.collection.deleteById(id);
   }
 

@@ -43,14 +43,13 @@ export class DbEntityCollection<T extends DbEntity> {
     await this.collection.insertMany(newEntities);
   }
 
-  public async deleteById(id: string | mongodb.ObjectID): Promise<boolean> {
+  public async deleteById(id: string | mongodb.ObjectID): Promise<mongodb.DeleteWriteOpResultObject> {
     const documentId = new mongodb.ObjectID(id);
     const result = await this.collection.deleteOne({_id: documentId});
-    return !!result.deletedCount;
+    return result;
   }
 
   public async replace(entity: T, upsert = false): Promise<boolean> {
-    console.log(entity.id);
     const documentId = new mongodb.ObjectID(entity.id);
     const result = await this.collection.replaceOne(
       {_id: documentId},

@@ -24,7 +24,7 @@ class UsersStore {
     return this.collection.add(users);
   }
 
-  public deleteById(id: string | mongodb.ObjectID): Promise<boolean> {
+  public deleteById(id: string | mongodb.ObjectID): Promise<mongodb.DeleteWriteOpResultObject> {
     return this.collection.deleteById(id);
   }
 

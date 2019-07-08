@@ -24,7 +24,7 @@ class ProductStore {
     return this.collection.add(products);
   }
 
-  public deleteById(id: string | mongodb.ObjectID): Promise<boolean> {
+  public deleteById(id: string | mongodb.ObjectID): Promise<mongodb.DeleteWriteOpResultObject> {
     return this.collection.deleteById(id);
   }
 

@@ -28,7 +28,7 @@ class CredentialsStore {
     return this.collection.add(creds);
   }
 
-  public deleteById(id: string | mongodb.ObjectID): Promise<boolean> {
+  public deleteById(id: string | mongodb.ObjectID): Promise<mongodb.DeleteWriteOpResultObject> {
     return this.collection.deleteById(id);
   }
 

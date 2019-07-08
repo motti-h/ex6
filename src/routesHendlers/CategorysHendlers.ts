@@ -36,10 +36,11 @@ export function categoryPutHandler(req: Request, res: Response, next?: NextFunct
     return myStore.categories.replace(newCategory);
 }
 
-export function categoryDeleteHandler(req: Request, res: Response, next?: NextFunction): Promise<any> {
+export async function categoryDeleteHandler(req: Request, res: Response, next?: NextFunction): Promise<any> {
     const id = req.params.id;
     const myStore = resolveStore(res);
-    return myStore.categories.deleteById(id);
+    const r = await myStore.categories.deleteById(id);
+    return (r.result.n) ? Promise.resolve('deleted') : Promise.reject(new Error('204'));
 }
 
 
